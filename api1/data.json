@@ -1,0 +1,343 @@
+[
+{
+  "model": "apiapp.property",
+  "pk": 1,
+  "fields": {
+    "title": "kisaju",
+    "price": "200000",
+    "latitude": "1.519900",
+    "longitude": "37.267200",
+    "location": "Nairobi",
+    "beds": 1,
+    "baths": 1,
+    "size": 2,
+    "type": "airbnb",
+    "main_image": ""
+  }
+},
+{
+  "model": "apiapp.property",
+  "pk": 2,
+  "fields": {
+    "title": "yuy",
+    "price": "2000",
+    "latitude": null,
+    "longitude": null,
+    "location": "Nairobi",
+    "beds": 4,
+    "baths": 4,
+    "size": 44,
+    "type": "rent",
+    "main_image": ""
+  }
+},
+{
+  "model": "apiapp.property",
+  "pk": 3,
+  "fields": {
+    "title": "macha435",
+    "price": "3000",
+    "latitude": "18.538701",
+    "longitude": "-70.066307",
+    "location": "Nairobi",
+    "beds": 4,
+    "baths": 4,
+    "size": 23,
+    "type": "sale",
+    "main_image": "property_images/WIN_20260504_16_03_40_Pro.jpg"
+  }
+},
+{
+  "model": "apiapp.property",
+  "pk": 4,
+  "fields": {
+    "title": "macha435",
+    "price": "3000",
+    "latitude": "18.538701",
+    "longitude": "-70.066307",
+    "location": "Nairobi",
+    "beds": 4,
+    "baths": 4,
+    "size": 23,
+    "type": "sale",
+    "main_image": "property_images/WIN_20260504_16_03_40_Pro_itvtwep.jpg"
+  }
+},
+{
+  "model": "apiapp.propertyimage",
+  "pk": 1,
+  "fields": {
+    "property": 3,
+    "image": "property_images/WIN_20260504_16_03_27_Pro.jpg"
+  }
+},
+{
+  "model": "apiapp.propertyimage",
+  "pk": 2,
+  "fields": {
+    "property": 3,
+    "image": "property_images/WIN_20260504_16_03_40_Pro_svfJ6xe.jpg"
+  }
+},
+{
+  "model": "apiapp.propertyimage",
+  "pk": 3,
+  "fields": {
+    "property": 4,
+    "image": "property_images/WIN_20260504_16_03_27_Pro_Tb2M77h.jpg"
+  }
+},
+{
+  "model": "apiapp.propertyimage",
+  "pk": 4,
+  "fields": {
+    "property": 4,
+    "image": "property_images/WIN_20260504_16_03_40_Pro_eADCiPb.jpg"
+  }
+},
+{
+  "model": "apiapp.booking",
+  "pk": 1,
+  "fields": {
+    "user": 4,
+    "property": 1,
+    "check_in": "2026-02-04",
+    "check_out": "2026-02-05",
+    "guests": 1,
+    "created_at": "2026-02-03T10:15:40.742Z"
+  }
+},
+{
+  "model": "apiapp.booking",
+  "pk": 2,
+  "fields": {
+    "user": 6,
+    "property": 1,
+    "check_in": "2026-04-24",
+    "check_out": "2026-04-25",
+    "guests": 1,
+    "created_at": "2026-04-24T09:00:04.663Z"
+  }
+},
+{
+  "model": "apiapp.booking",
+  "pk": 3,
+  "fields": {
+    "user": 6,
+    "property": 1,
+    "check_in": "2026-04-28",
+    "check_out": "2026-04-29",
+    "guests": 1,
+    "created_at": "2026-04-28T11:50:22.985Z"
+  }
+},
+{
+  "model": "apiapp.booking",
+  "pk": 4,
+  "fields": {
+    "user": 6,
+    "property": 1,
+    "check_in": "2026-05-04",
+    "check_out": "2026-05-05",
+    "guests": 1,
+    "created_at": "2026-05-04T12:16:05.689Z"
+  }
+},
+{
+  "model": "apiapp.favorite",
+  "pk": 6,
+  "fields": {
+    "user": 5,
+    "property": 1,
+    "created_at": "2026-02-27T14:40:34.249Z"
+  }
+},
+{
+  "model": "apiapp.favorite",
+  "pk": 34,
+  "fields": {
+    "user": 6,
+    "property": 1,
+    "created_at": "2026-05-08T12:05:09.962Z"
+  }
+},
+{
+  "model": "apiapp.favorite",
+  "pk": 35,
+  "fields": {
+    "user": 7,
+    "property": 1,
+    "created_at": "2026-05-08T20:18:41.154Z"
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$PQUJ5vRsKPEP6xymIqMpmW$OqhDSonWhA15We0Z5XXjU/k5SSs5mhbF5rSAoL7WXbk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Maina",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-31T09:49:07.624Z",
+    "email": "Simoreings2@gmail.com",
+    "phone": "5566",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$dJw2g1J3lGUpoVDjLKa7dB$Yetypt5+ElcQJH/HJU1oGmjTy/3rTYcNWUYkg8hxsZQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "golden",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-31T14:23:26.013Z",
+    "email": "Simoreings22@gmail.com",
+    "phone": "792001203",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Okzc5ocL7Xfva8Rgfie7E9$Yt2OsOBWZb2/E4ie3Nyrhk3uXtXJ1d0oiY72d1JMGaE=",
+    "last_login": "2026-05-11T12:54:08.260Z",
+    "is_superuser": true,
+    "username": "simo",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-01-19T08:41:23.044Z",
+    "email": "simo@gmail.com",
+    "phone": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$rhRuluBKeqqlyIEJNtaCNz$XJyIQPnNRVp99qRUXFnXYMz2FgWQSm0R+rzNXxjbHJA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "jet",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-03T10:15:10.218Z",
+    "email": "simonmainamugo@gmail.com",
+    "phone": "792001203",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$tfQ1Gw6u6u6iNTSv22AWua$A4EuaxMz4cNW1Mn6qI2b4oTA8Bym/mP0/NB2SE+Xruk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "goldenn",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-27T14:33:57.329Z",
+    "email": "Simoreings242@gmail.com",
+    "phone": "792001203",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$8euqDf9axugUWmvzJaGIJe$mqfThIEvad2v+bIzbl9xQ5kRls5/PN+3sezQOgYl/HE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "jetta",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-21T17:59:06.377Z",
+    "email": "simonmainamugooo@gmail.com",
+    "phone": "792001203",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$KgpGA1bh2JdlkVAxNIATdO$ZNmVMYxD0t8JpiTMsyBcAClKhrkbV0QeuJdrMrpeVbs=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "simoyoo",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-05-08T13:17:22.714Z",
+    "email": "simoyou@gmail.com",
+    "phone": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-01-19T08:43:36.031Z",
+    "user": 3,
+    "content_type": 1,
+    "object_id": "1",
+    "object_repr": "kisaju",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6f7se0u4qgo2h909p6yyqxu7v8t2pid7",
+  "fields": {
+    "session_data": ".eJxVjEsOwiAUAO_C2hDKA3y4dO8ZyOMnVQNJaVemd29IutDtzGS-zNG2Frf1tLg5shsDdvllnsI71SHii-qz8dDqusyej4SftvNHi-lzP9u_QaFexlZowIQKfNBkyGipsocr5AQSpLcBEaSdlMUsDGUrszFWC4UQxQRasf0AvCo2Yw:1wMQ9A:4uEhlq3tEZzfJlHYz7-k8gDLf4UM_sBbpJnWEO80UQ8",
+    "expire_date": "2026-05-25T12:54:08.276Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ik7pmbbhf75kk7r6th677sncb7vqpcr8",
+  "fields": {
+    "session_data": ".eJxVjEsOwiAUAO_C2hDKA3y4dO8ZyOMnVQNJaVemd29IutDtzGS-zNG2Frf1tLg5shsDdvllnsI71SHii-qz8dDqusyej4SftvNHi-lzP9u_QaFexlZowIQKfNBkyGipsocr5AQSpLcBEaSdlMUsDGUrszFWC4UQxQRasf0AvCo2Yw:1vy9ek:tpQFCnOP3Zj9iAKpw_w68K4jqGodG_25IvjMXZ9wArw",
+    "expire_date": "2026-03-19T14:26:26.173Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "of5vq5taw5eq0hjxhx5kmdainyf3npsy",
+  "fields": {
+    "session_data": ".eJxVjEsOwiAUAO_C2hDKA3y4dO8ZyOMnVQNJaVemd29IutDtzGS-zNG2Frf1tLg5shsDdvllnsI71SHii-qz8dDqusyej4SftvNHi-lzP9u_QaFexlZowIQKfNBkyGipsocr5AQSpLcBEaSdlMUsDGUrszFWC4UQxQRasf0AvCo2Yw:1vkhWM:4rb3MCnH0Z-3zc1VTDDhY56lJTHnKc-CBu6u_2T3OCE",
+    "expire_date": "2026-02-10T11:46:10.397Z"
+  }
+}
+]
