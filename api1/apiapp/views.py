@@ -1,19 +1,32 @@
 from django.http import JsonResponse
-from .models import Property,Booking
+from django.shortcuts import get_object_or_404
+from django.db.models import Prefetch, Q
+
+from rest_framework import generics, status
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+from .models import (
+    Property,
+    PropertyImage,
+    Booking,
+    Favorite,
+)
+from .serializers import PropertySerializer
+
+
 def home(request):
     return JsonResponse({"message": "API Home"})
 
 
-
-
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-
 @api_view(["GET"])
 @authentication_classes([JWTAuthentication])
-@permission_classes([AllowAny])  # allow public but still reads user if token exists
+@permission_classes([AllowAny])
 def get_properties(request):
     properties = Property.objects.all()
 
@@ -49,17 +62,16 @@ def get_properties(request):
         })
 
     return Response(data)
-    
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
-from django.db.models import Prefetch
-from .models import Property, PropertyImage
+
 
 @api_view(["GET"])
 def get_property_detail(request, pk):
     property = get_object_or_404(
         Property.objects.prefetch_related(
-            Prefetch("images", queryset=PropertyImage.objects.only("image"))
+            Prefetch(
+                "images",
+                queryset=PropertyImage.objects.only("image")
+            )
         ),
         pk=pk
     )
@@ -91,14 +103,7 @@ def get_property_detail(request, pk):
     }
 
     return Response(data)
-# apiapp/views.py
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from django.db.models import Q
 
-from .models import Booking, Property
 
 class BookAirbnbView(APIView):
     permission_classes = [IsAuthenticated]
@@ -112,21 +117,20 @@ class BookAirbnbView(APIView):
         if not all([property_id, check_in, check_out]):
             return Response(
                 {"detail": "Missing booking fields"},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         property = Property.objects.filter(
             id=property_id,
-            type="airbnb"
+            type="airbnb",
         ).first()
 
         if not property:
             return Response(
                 {"detail": "Invalid Airbnb property"},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # Prevent overlapping bookings
         overlap = Booking.objects.filter(
             property=property,
             check_in__lt=check_out,
@@ -136,7 +140,7 @@ class BookAirbnbView(APIView):
         if overlap:
             return Response(
                 {"detail": "Property already booked for selected dates"},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         Booking.objects.create(
@@ -149,13 +153,18 @@ class BookAirbnbView(APIView):
 
         return Response(
             {"detail": "Booking successful"},
-            status=status.HTTP_201_CREATED
+            status=status.HTTP_201_CREATED,
         )
+
+
 class AllBookingsView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        bookings = Booking.objects.select_related("user", "property")
+        bookings = Booking.objects.select_related(
+            "user",
+            "property",
+        )
 
         data = [
             {
@@ -168,13 +177,7 @@ class AllBookingsView(APIView):
         ]
 
         return Response(data)
-from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework import status
-from django.shortcuts import get_object_or_404
 
-from .models import Property, Favorite
 
 class FavoriteToggleView(APIView):
     permission_classes = [IsAuthenticated]
@@ -182,20 +185,39 @@ class FavoriteToggleView(APIView):
     def post(self, request, pk):
         prop = get_object_or_404(Property, pk=pk)
 
-        fav = Favorite.objects.filter(user=request.user, property=prop).first()
+        fav = Favorite.objects.filter(
+            user=request.user,
+            property=prop,
+        ).first()
+
         if fav:
             fav.delete()
-            return Response({"favorited": False}, status=status.HTTP_200_OK)
+            return Response(
+                {"favorited": False},
+                status=status.HTTP_200_OK,
+            )
 
-        Favorite.objects.create(user=request.user, property=prop)
-        return Response({"favorited": True}, status=status.HTTP_201_CREATED)
+        Favorite.objects.create(
+            user=request.user,
+            property=prop,
+        )
+
+        return Response(
+            {"favorited": True},
+            status=status.HTTP_201_CREATED,
+        )
 
 
 class FavoriteListView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        favorites = Favorite.objects.filter(user=request.user).select_related("property").order_by("-created_at")
+        favorites = (
+            Favorite.objects.filter(user=request.user)
+            .select_related("property")
+            .order_by("-created_at")
+        )
+
         data = [
             {
                 "id": f.property.id,
@@ -206,15 +228,21 @@ class FavoriteListView(APIView):
                 "baths": f.property.baths,
                 "area": f.property.size,
                 "type": f.property.type,
-                "image": request.build_absolute_uri(f.property.main_image.url) if f.property.main_image else None,
+                "image": (
+                    request.build_absolute_uri(
+                        f.property.main_image.url
+                    )
+                    if f.property.main_image
+                    else None
+                ),
             }
             for f in favorites
         ]
-        return Response(data, status=status.HTTP_200_OK)
-from rest_framework import generics
-from rest_framework.parsers import MultiPartParser, FormParser
-from .models import Property
-from .serializers import PropertySerializer
+
+        return Response(
+            data,
+            status=status.HTTP_200_OK,
+        )
 
 
 class PropertyListCreateView(generics.ListCreateAPIView):
@@ -225,4 +253,3 @@ class PropertyListCreateView(generics.ListCreateAPIView):
         MultiPartParser,
         FormParser,
     )
-      
