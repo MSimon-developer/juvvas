@@ -82,14 +82,13 @@ WSGI_APPLICATION = 'api1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'housing',
-        'USER': 'postgres',
+        'NAME': 'juvvasdb',
+        'USER': 'juvvasuser',
         'PASSWORD': '7788',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
