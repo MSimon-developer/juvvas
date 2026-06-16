@@ -17,10 +17,10 @@ class Property(models.Model):
     title = models.CharField(max_length=255)
     price = models.CharField(max_length=50)
     latitude = models.DecimalField(
-        max_digits=9, decimal_places=6, null=True, blank=True
+        max_digits=20, decimal_places=9, null=True, blank=True
     )
     longitude = models.DecimalField(
-        max_digits=9, decimal_places=6, null=True, blank=True
+        max_digits=20, decimal_places=9, null=True, blank=True
     )
     location = models.CharField(max_length=255)
     beds = models.IntegerField()
