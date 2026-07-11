@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { refreshAccessToken } from "@/lib/auth";
+import ThemeToggle from "@/components/layout/ThemeToggle";
 
 import {
   Menu,
@@ -93,8 +94,8 @@ const Navbar = () => {
 };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur shadow-sm">
-      <div className="container mx-auto px-4">
+<nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-sm">
+<div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
 
           {/* LOGO */}
@@ -110,8 +111,8 @@ const Navbar = () => {
               className="object-contain block -mr-1"
             />
 
-            <span className="text-xl font-bold tracking-tight leading-none hover:text-cyan-600 transition-colors">
-              uvvas
+<span className="text-xl font-bold tracking-tight leading-none text-foreground hover:text-primary transition-colors">
+                uvvas
             </span>
           </Link>
 
@@ -119,29 +120,25 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/properties"
-              className="text-sm font-medium text-gray-600 hover:text-cyan-600 transition-colors"
-            >
+className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"            >
               Browse Properties
             </Link>
 
             <Link
               href="/properties?type=rent"
-              className="text-sm font-medium text-gray-600 hover:text-cyan-600 transition-colors"
-            >
+className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"            >
               Rentals
             </Link>
 
             <Link
               href="/properties?type=airbnb"
-              className="text-sm font-medium text-gray-600 hover:text-cyan-600 transition-colors"
-            >
+className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"            >
               Airbnbs
             </Link>
 
             <Link
               href="/properties?type=sale"
-              className="text-sm font-medium text-gray-600 hover:text-cyan-600 transition-colors"
-            >
+className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"            >
               For Sale
             </Link>
           </div>
@@ -192,8 +189,7 @@ const Navbar = () => {
           {/* MOBILE MENU BUTTON */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md hover:bg-cyan-50 transition-colors"
-          >
+className="md:hidden p-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"          >
             {isOpen ? (
               <X className="h-6 w-6" />
             ) : (
@@ -204,49 +200,47 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         {isOpen && (
-          <div className="md:hidden py-4 space-y-3 border-t">
-
+<div className="md:hidden py-4 space-y-3 border-t border-border bg-background">
             <Link
               href="/properties"
               onClick={() => setIsOpen(false)}
-              className="block py-3 px-4 border-b hover:bg-cyan-50 hover:text-cyan-600 transition-colors"
-            >
+className="block py-3 px-4 border-b border-border text-foreground hover:bg-accent hover:text-primary transition-colors"            >
               Browse Properties
             </Link>
 
             <Link
               href="/properties?type=rent"
               onClick={() => setIsOpen(false)}
-              className="block py-3 px-4 border-b hover:bg-cyan-50 hover:text-cyan-600 transition-colors"
-            >
+className="block py-3 px-4 border-b border-border text-foreground hover:bg-accent hover:text-primary transition-colors"            >
               Rentals
             </Link>
 
             <Link
               href="/properties?type=airbnb"
               onClick={() => setIsOpen(false)}
-              className="block py-3 px-4 border-b hover:bg-cyan-50 hover:text-cyan-600 transition-colors"
-            >
+className="block py-3 px-4 border-b border-border text-foreground hover:bg-accent hover:text-primary transition-colors"            >
               Airbnbs
             </Link>
 
             <Link
               href="/properties?type=sale"
               onClick={() => setIsOpen(false)}
-              className="block py-3 px-4 border-b hover:bg-cyan-50 hover:text-cyan-600 transition-colors"
-            >
+className="block py-3 px-4 border-b border-border text-foreground hover:bg-accent hover:text-primary transition-colors"            >
               For Sale
             </Link>
 
             <Link
               href="/?favorites=1"
               onClick={() => setIsOpen(false)}
-              className="block py-3 px-4 hover:bg-cyan-50 hover:text-cyan-600 transition-colors"
-            >
+className="block py-3 px-4 text-foreground hover:bg-accent hover:text-primary transition-colors"
+>
               Saved
             </Link>
 
             <div className="flex flex-col gap-2 px-4 pt-2">
+              <div className="px-4 py-2">
+  <ThemeToggle />
+</div>
 
               {isLoggedIn ? (
                 <Button
