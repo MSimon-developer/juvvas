@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import get_properties,home, get_property_detail
-from .views import BookAirbnbView, FavoriteToggleView, FavoriteListView, AllBookingsView, PropertyListCreateView
+get_properties,home, get_property_detail,delete_property
+from .views import get_properties,home, get_property_detail,delete_property, BookAirbnbView, FavoriteToggleView, FavoriteListView, AllBookingsView, PropertyListCreateView
 
 urlpatterns = [
     path('', home), 
@@ -15,6 +15,11 @@ urlpatterns = [
         PropertyListCreateView.as_view(),
         name="properties"
     ),
+    path(
+    "properties/<int:property_id>/delete/",
+    delete_property,
+    name="delete_property",
+),
 ]
 
  
