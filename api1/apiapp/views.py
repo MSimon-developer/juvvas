@@ -253,3 +253,21 @@ class PropertyListCreateView(generics.ListCreateAPIView):
         MultiPartParser,
         FormParser,
     )
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def delete_property(request, property_id):
+    property_obj = get_object_or_404(Property, id=property_id)
+
+    # Only allow the owner/admin to delete
+    if not request.user.is_staff and property_obj.owner != request.user:
+        return JsonResponse(
+            {"error": "You do not have permission to delete this property."},
+            status=403,
+        )
+
+    property_obj.delete()
+
+    return JsonResponse(
+        {"message": "Property deleted successfully."},
+        status=200,
+    )

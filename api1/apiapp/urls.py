@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import get_properties,home, get_property_detail,delete_property, BookAirbnbView, FavoriteToggleView, FavoriteListView, AllBookingsView, PropertyListCreateView
+from .views import get_properties,home, get_property_detail, delete_property, BookAirbnbView, FavoriteToggleView, FavoriteListView, AllBookingsView, PropertyListCreateView
 
 urlpatterns = [
     path('', home), 
