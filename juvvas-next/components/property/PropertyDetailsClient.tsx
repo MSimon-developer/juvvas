@@ -280,16 +280,27 @@ const PropertyDetailsClient = ({
                 </Button>
 
                 {isAdmin && (
-                  <Button
-                    variant="destructive"
-                    className="w-full"
-                    onClick={
-                      handleDelete
-                    }
-                  >
-                    Delete Property
-                  </Button>
-                )}
+  <>
+    <Button
+      className="w-full"
+      onClick={() =>
+        router.push(
+          `/dashboard/properties/${property.id}/edit`
+        )
+      }
+    >
+      Edit Property
+    </Button>
+
+    <Button
+      variant="destructive"
+      className="w-full"
+      onClick={handleDelete}
+    >
+      Delete Property
+    </Button>
+  </>
+)}
 
               </CardContent>
             </Card>

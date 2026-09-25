@@ -271,3 +271,57 @@ def delete_property(request, property_id):
         {"message": "Property deleted successfully."},
         status=200,
     )
+@api_view(["PATCH", "PUT"])
+@permission_classes([IsAuthenticated])
+def update_property(request, property_id):
+    property_obj = get_object_or_404(Property, id=property_id)
+
+    # Staff can update ANY property
+    # Normal users can update only their own property
+    if not request.user.is_staff and property_obj.owner != request.user:
+        return JsonResponse(
+            {"error": "You do not have permission to update this property."},
+            status=403,
+        )
+
+    # Update text/basic fields
+    if "title" in request.data:
+        property_obj.title = request.data["title"]
+
+    if "price" in request.data:
+        property_obj.price = request.data["price"]
+
+    if "location" in request.data:
+        property_obj.location = request.data["location"]
+
+    if "type" in request.data:
+        property_obj.type = request.data["type"]
+
+    if "latitude" in request.data:
+        property_obj.latitude = request.data["latitude"]
+
+    if "longitude" in request.data:
+        property_obj.longitude = request.data["longitude"]
+
+    if "beds" in request.data:
+        property_obj.beds = request.data["beds"]
+
+    if "baths" in request.data:
+        property_obj.baths = request.data["baths"]
+
+    if "size" in request.data:
+        property_obj.size = request.data["size"]
+
+    # Main image replacement
+    if "main_image" in request.FILES:
+        property_obj.main_image = request.FILES["main_image"]
+
+    property_obj.save()
+
+    return JsonResponse(
+        {
+            "message": "Property updated successfully.",
+            "property_id": property_obj.id,
+        },
+        status=200,
+    )
